@@ -1,0 +1,91 @@
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+  </div>
+</template>
+
+
+export default defineComponent({
+    name:'ContactList',
+    methods: {
+        addContact: function(name:string, surname:string, photo:img) {
+        let contacts = []
+        if (typeof window !=="undefined") {
+            if (localStorage.getItem('contacts')) {
+            contacts = JSON.parse(localStorage.getItem('contacts')|| '{}')
+            }
+            contacts.push({
+            name: name,
+            surname: surname,
+            photo: photo,
+            })
+            localStorage.setItem('contacts', JSON.stringify(contacts))
+            }
+        console.log(localStorage)    
+        }
+                
+    }
+
+
+});
+--
+<p> {{(getContacts().length==0) ? 'Контакты ещё не добавлены' : (getContacts())}}</p>
+--
+import { defineComponent } from 'vue';
+console.log(localStorage)
+export default defineComponent({
+  
+  name:'ContactList',
+  methods: {
+	  getContacts: function() {
+		  if (typeof window !=="undefined") {
+        if (localStorage.getItem('contacts')) {
+          return JSON.parse(localStorage.getItem('contacts')|| '{}')
+          }
+         }
+      return []
+   },
+   deleteAllContacts: function() {
+            if (typeof window !=="undefined") {
+                localStorage.removeItem('contacts')
+                }
+              this.$forceUpdate()  
+            } 
+  } 
+});
+--
+export default defineComponent({
+  
+  setup () {
+    
+	  const getContacts =() => {
+		  if (typeof window !=="undefined") {
+        if (localStorage.getItem('contacts')) {
+          return JSON.parse(localStorage.getItem('contacts')|| '{}')
+          }
+         }
+      return []
+   }
+   
+   
+   const deleteAllContacts = () => {
+            if (typeof window !=="undefined") {
+                localStorage.removeItem('contacts')
+                }
+              //this.$forceUpdate()  
+              
+            }
+    
+    return {
+            getContacts,
+            deleteAllContacts,
+           }        
+  } 
+  
+});
+--
+<ul class="demo">
+  <li v-for="value in getContacts()">
+    <p>{{ value.name }} {{ value.surname }}</p><br/>
+  </li>
+</ul>
