@@ -19,7 +19,7 @@ import { defineComponent, reactive } from 'vue';
 
 export default defineComponent({
     setup() {
-        const addContact = (name:string, surname:string, mobile:number, email: string, photo:img) => {
+        const addContact = (name:string, surname:string, mobile:number, email: string, e:any) => {
         let contacts = []
         if (typeof window !=="undefined") {
             if (localStorage.getItem('contacts')) {
@@ -30,7 +30,7 @@ export default defineComponent({
             surname: surname,
             mobile: mobile,
             email:email,
-            photo: photo,
+            e: e,
             })
             localStorage.setItem('contacts', JSON.stringify(contacts))
             }

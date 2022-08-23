@@ -7,7 +7,7 @@
  <p v-else>
     
   
-<div v-for="item in getContacts()" :key="item.id">
+<div v-for="item in getContacts()" :key="item.index">
   {{ item.name }} {{ item.surname }} {{ item.mobile }} {{ item.email }}
 </div>
 
@@ -16,9 +16,8 @@
 
  <p><button @click="$router.push('addcontact')">добавить контакт</button></p>
  <p><button @click="deleteAllContacts">удалить все контакты</button></p>
- 
-    
-  </div>
+       
+ </div>
 </template>
 
 <script lang="ts">
@@ -31,17 +30,20 @@ export default defineComponent({
 	  getContacts: function() {
 		  if (typeof window !=="undefined") {
         if (localStorage.getItem('contacts')) {
-          return JSON.parse(localStorage.getItem('contacts')|| '{}')
+          let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
+          let sortedContacts = contactsArray.sort((a:any, b:any) => (a.name < b.name ? -1 : 1))
+          return sortedContacts
           }
-         }
+        }
       return []
+      
    },
    deleteAllContacts: function() {
             if (typeof window !=="undefined") {
                 localStorage.removeItem('contacts')
                 }
               this.$forceUpdate()  
-            } 
+            }
   } 
   
   
