@@ -5,15 +5,14 @@
 
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
-    
-  
-<div v-for="item in getContacts()" :key="item.index">
+     
+  <div v-for="item in getContacts()" :key="item.index">
   <div id="photo">
   <img :src="item.photo" alt="Фото ещё не загружено" class="responsive" />
   </div>
   {{ item.name }} {{ item.surname }} {{ item.main }}  {{ item.personal }} 
   <a v-bind:href="item.vk" target="_blank"> {{ item.vk ? 'VK' : ''  }}  </a> 
-  {{ item.note }} День рождения: {{ item.birthday ? item.birthday : 'Не указан' }} 
+  {{ item.note }} {{ item.birthday ? 'День рождения' +': '+ (item.birthday) : '' }} 
     
 </div>
 

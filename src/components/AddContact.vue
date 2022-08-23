@@ -31,9 +31,13 @@
 <script lang="ts">
 
 import { defineComponent, reactive } from 'vue';
+import { useRouter } from "vue-router";
 
 export default defineComponent({
     setup() {
+
+        const router = useRouter()
+
         const addContact = (name:string, surname:string, main:number, work:number, 
         additional:number, personal:string, working:string, another:string,
         telegram:string, whatsapp:string, vk:string, instagram:string, note:string, birthday:any, photo:any ) => {
@@ -61,7 +65,7 @@ export default defineComponent({
             })
             localStorage.setItem('contacts', JSON.stringify(contacts))
             }
-        console.log(localStorage)    
+          router.push({path: '/'})  
         }
 
         let state = reactive({
@@ -75,24 +79,24 @@ export default defineComponent({
           additional: '',
           },
         email: {
-        personal: '',
-        working: '',
-        another: '',
+          personal: '',
+          working: '',
+          another: '',
         },
         social: {
-            telegram: '',
-            whatsapp: '',
-            vk: '',
-            instagram: '',
+          telegram: '',
+          whatsapp: '',
+          vk: '',
+          instagram: '',
         },
-            birthday: '',
-            note: '',
+          birthday: '',
+          note: '',
     })
 
     const uploadImage = (e: any) => {
       if (e.target.files[0].size > 1000000) return
       let reader = new FileReader()
-      reader.onload = (e) => {
+      reader.onload = () => {
         state.photo = reader.result as string
       }
       reader.readAsDataURL(e.target.files[0])
