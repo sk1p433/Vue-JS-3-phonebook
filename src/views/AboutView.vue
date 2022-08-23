@@ -89,3 +89,5 @@ export default defineComponent({
     <p>{{ value.name }} {{ value.surname }}</p><br/>
   </li>
 </ul>
+--
+//<img v-bind:src="'data:{{ item.photo }}'" />

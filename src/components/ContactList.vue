@@ -8,7 +8,13 @@
     
   
 <div v-for="item in getContacts()" :key="item.index">
-  {{ item.name }} {{ item.surname }} {{ item.mobile }} {{ item.email }}
+  <div id="photo">
+  <img :src="item.photo" alt="Фото ещё не загружено" class="responsive" />
+  </div>
+  {{ item.name }} {{ item.surname }} {{ item.main }}  {{ item.personal }} 
+  <a v-bind:href="item.vk" target="_blank"> {{ item.vk ? 'VK' : ''  }}  </a> 
+  {{ item.note }} День рождения: {{ item.birthday ? item.birthday : 'Не указан' }} 
+    
 </div>
 
 
@@ -21,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive  } from 'vue';
+import { defineComponent } from 'vue';
 console.log(localStorage)
 export default defineComponent({
   
@@ -31,6 +37,7 @@ export default defineComponent({
 		  if (typeof window !=="undefined") {
         if (localStorage.getItem('contacts')) {
           let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
+          //сортировка контактов по именам
           let sortedContacts = contactsArray.sort((a:any, b:any) => (a.name < b.name ? -1 : 1))
           return sortedContacts
           }
@@ -66,4 +73,9 @@ li {
 a {
   color: #42b983;
 }
+.responsive {
+  width: 10%;
+  height: auto;
+}
+
 </style>
