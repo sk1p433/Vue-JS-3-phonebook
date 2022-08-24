@@ -1,7 +1,7 @@
 <template>
 <div class="d-flex justify-content-center"> 
  <div class="mb-1" id="cardform">
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent>
       <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
       Имя<input v-model="state.name" class="form-control" placeholder="введите имя" />
       <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
@@ -15,13 +15,13 @@
       <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
       <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
       <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="instagram" /> </p>
-      <p>Заметка <input v-model="state.social.note" class="form-control" placeholder="заметка" /> </p>
-      <p>День рождения <input v-model="state.social.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
+      <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
+      <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
       class="btn btn-primary"
       @click="addContact(state.name, state.surname, state.phone.main, state.phone.work,
       state.phone.additional, state.email.personal, state.email.working, state.email.another,
-      state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.social.note, state.social.birthday, state.photo)">
+      state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.note, state.birthday, state.photo)">
       добавить контакт
       </button>
     </form>

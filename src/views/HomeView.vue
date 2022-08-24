@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-   <h1> Телефонная книга</h1>
+   <h1> Контакты</h1>
     <ContactList msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
 </template>

@@ -118,3 +118,28 @@ export default defineComponent({
 --
 {{ getContact().map(object => object.id).indexOf(id) }}
 Индекс: {{ getContact().map(object => object.id).indexOf(id) }}
+--
+<p>
+      <button 
+      class="btn btn-primary" 
+      :style="{ margin: '5px' }" 
+      @click="$router.push(`contact/${item.id}`)"
+      >
+      подробности
+      </button></p>
+--
+<p><button class="btn btn-primary">Редактировать контакт</button></p>
+
+<hr/>
+<button @click="deleteContact" class="btn btn-primary" :style="{ margin: '5px' }">Удалить контакт</button>
+const deleteContact = () => {
+        if (typeof window !=="undefined") {
+            if (localStorage.getItem('contacts')) {
+          let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
+          let index = contactsArray.map((object:any) => object.id).indexOf(id)
+          contactsArray.splice(index, 1)
+          localStorage.setItem('contacts', JSON.stringify(contactsArray))
+          }
+        }
+        router.push({path: '/'})
+      }
