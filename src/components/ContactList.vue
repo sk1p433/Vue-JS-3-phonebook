@@ -1,12 +1,10 @@
 <template>
-  <div class="ContactList">
-    
+<div class="ContactList">
  
-
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
      
-<div v-for="item in getContacts()" :key="item.index">
+<div v-for="item in getContacts()" :key="item.id">
  <div class="d-flex justify-content-center"> 
   <div class="card" style="width: 18rem;">
     <p v-if="item.photo==0">Фото ещё не загружено</p>
@@ -17,7 +15,7 @@
     <div class="userinfo">
     {{ item.name }} {{ item.surname }}
     <hr/> Мобильный: {{ item.main ? item.main : 'Не указан' }} 
-    <hr/> Email: {{ item.personal ? item.personal : 'Email ещё не указан' }}  
+    <hr/> Email: {{ item.personal ? item.personal : 'Не указан' }}  
     <hr/> Социальные сети: 
     <p><a v-bind:href="item.vk" target="_blank"> {{ item.vk ? 'VK' : ''  }} </a> </p>
     <p><a v-bind:href="item.instagram" target="_blank"> {{ item.instagram ? 'Instagram' : ''  }}  </a> </p>
@@ -25,11 +23,21 @@
     <p><a v-bind:href="item.telegram" target="_blank"> {{ item.telegram ? 'Telegram' : ''  }}  </a> </p>
     <hr/> День рождения: {{ item.birthday ? item.birthday : 'Не указан' }}   
     <hr/> Заметки: {{ item.note ? item.note : 'У данного контакта пока нет заметок' }} 
+    {{ item.name }}
+    <hr/><p>
+      <button 
+      class="btn btn-primary" 
+      :style="{ margin: '5px' }" 
+      @click="$router.push(`contact/${item.id}`)"
+      :name="item.name"
+      >
+      подробности
+      </button></p>
+                
   </div>  
  </div>
  </div>  
 </div>
-
 
  </p>
 
@@ -50,7 +58,7 @@ export default defineComponent({
 		  if (typeof window !=="undefined") {
         if (localStorage.getItem('contacts')) {
           let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
-          //сортировка контактов по именам
+          //сортировка контактов от А до Я по именам
           let sortedContacts = contactsArray.sort((a:any, b:any) => (a.name < b.name ? -1 : 1))
           return sortedContacts
           }

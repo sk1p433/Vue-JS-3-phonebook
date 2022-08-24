@@ -34,6 +34,7 @@
 
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from "vue-router";
+import { v4 as uuidv4 } from 'uuid';
 
 export default defineComponent({
     setup() {
@@ -49,6 +50,7 @@ export default defineComponent({
             contacts = JSON.parse(localStorage.getItem('contacts')|| '{}')
             }
             contacts.push({
+            id: uuidv4(),
             name: name,
             surname: surname,
             main: main,

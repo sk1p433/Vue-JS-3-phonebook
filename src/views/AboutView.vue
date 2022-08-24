@@ -98,3 +98,23 @@ export default defineComponent({
   margin: 10px;
   border: 1px solid rgb(0, 0, 0)
 }
+--
+export default defineComponent({
+    name: 'ContactPage',
+    methods: {
+	  getContacts: function() {
+		  if (typeof window !=="undefined") {
+        if (localStorage.getItem('contacts')) {
+          let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
+          return contactsArray[1]
+          }
+        }
+      return []
+    } 
+    }  
+});
+--
+{{ getContact().name }}
+--
+{{ getContact().map(object => object.id).indexOf(id) }}
+Индекс: {{ getContact().map(object => object.id).indexOf(id) }}
