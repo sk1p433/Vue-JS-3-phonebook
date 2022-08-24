@@ -1,6 +1,7 @@
 <template>
+<h4>Добавить контакт</h4>
 <div class="d-flex justify-content-center"> 
- <div class="mb-1" id="cardform">
+  <div class="card" :style="{ padding: '10px' }">
     <form @submit.prevent>
       <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
       Имя<input v-model="state.name" class="form-control" placeholder="введите имя" />

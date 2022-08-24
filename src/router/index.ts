@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AddContact from '../components/AddContact.vue'
 import ContactPage from '../components/ContactPage.vue'
+import ContactEdit from '../components/ContactEdit.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,7 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/contact/:id',
     name: 'contactdetails',
     component: ContactPage,
-    props: true
+  },
+  {
+    path: '/contact/editcontact/:id',
+    name: 'editcontact',
+    component: ContactEdit,
   },
   {
     path: '/about',

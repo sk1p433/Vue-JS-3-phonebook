@@ -1,8 +1,19 @@
 <template>
 
 <div>
-  <p><button class="btn btn-primary">Редактировать контакт</button></p>
-  <button @click="deleteContact" class="btn btn-primary" :style="{ margin: '5px' }">Удалить контакт</button>
+  <p><button 
+  class="btn btn-primary" 
+  :style="{ width: '15%' }"
+  @click="$router.push(`editcontact/${getContact().id}`)"
+  >
+  Редактировать контакт
+  </button></p>
+  <button 
+  @click="deleteContact" 
+  class="btn btn-primary" 
+  :style="{ margin: '5px', width: '15%' }">
+  Удалить контакт
+  </button>
 <hr/>  
 <div class="d-flex justify-content-center">
   
@@ -28,7 +39,7 @@
       <p><a v-bind:href="getContact().whatsapp" target="_blank"> {{ getContact().whatsapp ? 'Whatsapp' : ''  }}  </a> </p>
       <p><a v-bind:href="getContact().telegram" target="_blank"> {{ getContact().telegram ? 'Telegram' : ''  }}  </a> </p>
       <hr/> День рождения: {{ getContact().birthday ? getContact().birthday : 'Не указан' }}   
-      <hr/> Заметки: {{ getContact().note ? getContact().note : 'У данного контакта пока нет заметок' }} 
+      <hr/> <p>Заметки: {{ getContact().note ? getContact().note : 'У данного контакта пока нет заметок' }} </p>
     </div>
    
   </div>
@@ -60,7 +71,6 @@ export default defineComponent({
       return []
     } 
 
-
     const deleteContact = () => {
         if (typeof window !=="undefined") {
             if (localStorage.getItem('contacts')) {
@@ -72,8 +82,6 @@ export default defineComponent({
         }
         router.push({path: '/'})
       }
-
-      
 
     return {
       getContact,

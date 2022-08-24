@@ -128,18 +128,8 @@ export default defineComponent({
       подробности
       </button></p>
 --
-<p><button class="btn btn-primary">Редактировать контакт</button></p>
+<div class="mb-1" id="cardform"></div>
 
-<hr/>
-<button @click="deleteContact" class="btn btn-primary" :style="{ margin: '5px' }">Удалить контакт</button>
-const deleteContact = () => {
-        if (typeof window !=="undefined") {
-            if (localStorage.getItem('contacts')) {
-          let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
-          let index = contactsArray.map((object:any) => object.id).indexOf(id)
-          contactsArray.splice(index, 1)
-          localStorage.setItem('contacts', JSON.stringify(contactsArray))
-          }
-        }
-        router.push({path: '/'})
-      }
+
+
+

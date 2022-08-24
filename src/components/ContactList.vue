@@ -1,8 +1,8 @@
 <template>
 <div class="ContactList">
 
-<p><button @click="$router.push('addcontact')" class="btn btn-primary">добавить контакт</button></p>
-<button @click="deleteAllContacts" class="btn btn-primary" :style="{ margin: '5px' }">удалить все контакты</button>
+<p><button @click="$router.push('addcontact')" class="btn btn-primary" :style="{ margin: '5px', width: '15%' }">добавить контакт</button></p>
+<button @click="deleteAllContacts" class="btn btn-primary" :style="{ margin: '5px', width: '15%' }">удалить все контакты</button>
 <hr/>
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
