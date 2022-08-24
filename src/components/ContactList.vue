@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-console.log(localStorage)
+
 export default defineComponent({
   
   name:'ContactList',

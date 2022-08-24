@@ -6,12 +6,45 @@
       <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
       <p>Имя<input v-model="state.name" class="form-control" placeholder="введите имя" /></p>
       <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
-      <p>Номер <input v-model="state.phone.main" class="form-control" placeholder="введите мобильный номер" /> </p>
-      <p>Рабочий номер <input v-model="state.phone.work" class="form-control" placeholder="введите рабочий номер" /> </p>
-      <p>Дополнительный номер <input v-model="state.phone.additional" class="form-control" placeholder="введите дополнительный номер" /> </p>
-      <p>Личный email <input v-model="state.email.personal" class="form-control" placeholder="введите email" /> </p>
-      <p>Рабочий email <input v-model="state.email.working" class="form-control" placeholder="введите рабочий email" /> </p>
-      <p>Дополнительный email <input v-model="state.email.another" class="form-control" placeholder="дополнительный email" /> </p>
+      <p>Номер 
+        <input v-model="state.phone.main" 
+        class="form-control" 
+        v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']"
+        placeholder="введите мобильный номер" /> 
+      </p>
+      <p>Рабочий номер 
+        <input v-model="state.phone.work" 
+        class="form-control" 
+        v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']"
+        placeholder="введите рабочий номер" />
+      </p>
+      <p>Дополнительный номер 
+        <input v-model="state.phone.additional" 
+        class="form-control" 
+        v-maska="['# (###) ##-##-##', '# (###) ###-##-##']"
+        placeholder="введите дополнительный номер" /> 
+      </p>
+      <p>Личный email 
+        <input v-model="state.email.personal" 
+        class="form-control"
+        @keydown="checkEmail"
+        :rules="emailRules.rules"
+        placeholder="введите email" />
+      </p>
+      <p>Рабочий email 
+        <input v-model="state.email.working" 
+        class="form-control"
+        @keydown="checkEmail"
+        :rules="emailRules.rules" 
+        placeholder="введите рабочий email" />
+      </p>
+      <p>Дополнительный email 
+        <input v-model="state.email.another" 
+        class="form-control"
+        @keydown="checkEmail"
+        :rules="emailRules.rules" 
+        placeholder="дополнительный email" />
+      </p>
       <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="telegram" /> </p>
       <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
       <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
@@ -19,13 +52,21 @@
       <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
       <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
-      class="btn btn-primary"
-      @click="editContact(state.name, state.surname, state.phone.main, state.phone.work,
-      state.phone.additional, state.email.personal, state.email.working, state.email.another,
-      state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.note, state.birthday, state.photo)"
-      >
-      сохранить
+        class="btn btn-primary"
+        :style="{ margin: '5px', width: '80%' }"
+        @click="editContact(state.name, state.surname, state.phone.main, state.phone.work,
+        state.phone.additional, state.email.personal, state.email.working, state.email.another,
+        state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, 
+        state.note, state.birthday, state.photo)"
+        >
+        сохранить
       </button>
+      <p><button 
+        @click="$router.push('/')"
+        class="btn btn-primary" 
+        :style="{ margin: '5px', width: '80%' }">
+        Отменить редактирование
+      </button></p>
     </form>
      
   </div>
@@ -60,7 +101,6 @@ export default defineComponent({
     const editContact = (name:string, surname:string, main:number, work:number, 
                         additional:number, personal:string, working:string, another:string,
                         telegram:string, whatsapp:string, vk:string, instagram:string, note:string, birthday:any, photo:any) => {
-        let contacts = []
         if (typeof window !== "undefined") {
             if (localStorage.getItem('contacts')) {
             let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
@@ -117,6 +157,24 @@ export default defineComponent({
       }
       reader.readAsDataURL(e.target.files[0])
     }
+
+    const checkSpelling = (value: string) => {
+        const regex = /[а-яА-Яё]/
+        return !value.match(regex)
+    }
+
+    const checkEmail = (e: any) => {
+        if (!checkSpelling(e.key)) {
+            e.preventDefault()
+        }
+    }
+
+    const emailRules = {rules: 
+      [(v: any) => !v ||
+      !v.length ||
+      /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(v)
+      ]
+    }
     
 
     return {
@@ -124,6 +182,9 @@ export default defineComponent({
       state,
       editContact,
       uploadImage,
+      checkSpelling,
+      checkEmail,
+      emailRules,
     }  
 
   }

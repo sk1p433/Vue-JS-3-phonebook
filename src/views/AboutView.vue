@@ -129,6 +129,13 @@ export default defineComponent({
       </button></p>
 --
 <div class="mb-1" id="cardform"></div>
+--
+#cardform {
+  width: 20%;
+  height: auto;
+  margin: 10px;
+  
+}
 
 
 

@@ -6,12 +6,49 @@
       <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
       Имя<input v-model="state.name" class="form-control" placeholder="введите имя" />
       <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
-      <p>Номер <input v-model="state.phone.main" class="form-control" placeholder="введите мобильный номер" /> </p>
-      <p>Рабочий номер <input v-model="state.phone.work" class="form-control" placeholder="введите рабочий номер" /> </p>
-      <p>Дополнительный номер <input v-model="state.phone.additional" class="form-control" placeholder="введите дополнительный номер" /> </p>
-      <p>Личный email <input v-model="state.email.personal" class="form-control" placeholder="введите email" /> </p>
-      <p>Рабочий email <input v-model="state.email.working" class="form-control" placeholder="введите рабочий email" /> </p>
-      <p>Дополнительный email <input v-model="state.email.another" class="form-control" placeholder="дополнительный email" /> </p>
+      <p>Сотовый телефон 
+        <input 
+        v-model="state.phone.main" 
+        class="form-control" 
+        v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" 
+        placeholder="введите мобильный номер" />
+      </p>
+      <p>Рабочий телефон 
+        <input v-model="state.phone.work" 
+        class="form-control" 
+        v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" 
+        placeholder="введите рабочий номер" />
+      </p>
+      <p>Дополнительный телефон 
+        <input v-model="state.phone.additional" 
+        class="form-control" 
+        v-maska="['# (###) ##-##-##', '# (###) ###-##-##']" 
+        placeholder="введите дополнительный номер" /> 
+      </p>
+      <p>Личный email 
+        <input v-model="state.email.personal" 
+        class="form-control" 
+        type="email"
+        @keydown="checkEmail"
+        :rules="emailRules.rules"
+        placeholder="введите email" />
+      </p>
+      <p>Рабочий email 
+        <input v-model="state.email.working" 
+        class="form-control" 
+        type="email"
+        @keydown="checkEmail"
+        :rules="emailRules.rules"
+        placeholder="введите рабочий email" /> 
+      </p>
+      <p>Дополнительный email 
+        <input v-model="state.email.another" 
+        class="form-control" 
+        type="email"
+        @keydown="checkEmail"
+        :rules="emailRules.rules"
+        placeholder="дополнительный email" /> 
+      </p>
       <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="telegram" /> </p>
       <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
       <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
@@ -37,6 +74,7 @@ import { defineComponent, reactive } from 'vue';
 import { useRouter } from "vue-router";
 import { v4 as uuidv4 } from 'uuid';
 
+
 export default defineComponent({
     setup() {
 
@@ -50,6 +88,8 @@ export default defineComponent({
             if (localStorage.getItem('contacts')) {
             contacts = JSON.parse(localStorage.getItem('contacts')|| '{}')
             }
+            if (name.length==0) { alert('Вы не можете создать контакт без имени')}
+            else {
             contacts.push({
             id: uuidv4(),
             name: name,
@@ -69,8 +109,9 @@ export default defineComponent({
             photo:photo,
             })
             localStorage.setItem('contacts', JSON.stringify(contacts))
+            router.push({path: '/'})
             }
-          router.push({path: '/'})  
+          }
         }
 
         let state = reactive({
@@ -106,12 +147,32 @@ export default defineComponent({
       }
       reader.readAsDataURL(e.target.files[0])
     }
-     
-        return {
-            addContact,
-            state,
-            uploadImage,
-         }
+
+    const checkSpelling = (value: string) => {
+        const regex = /[а-яА-Яё]/
+        return !value.match(regex)
+    }
+
+    const checkEmail = (e: any) => {
+      if (!checkSpelling(e.key)) {
+        e.preventDefault()
+      }
+    }
+    
+    const emailRules = {rules: 
+          [(v: any) =>          !v ||
+          !v.length ||
+          /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(v)
+          ]
+    }
+                 
+    return {
+        addContact,
+        state,
+        uploadImage,
+        checkEmail,
+        emailRules,
+    }
     
     }
 });
@@ -120,12 +181,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-#cardform {
-  width: 20%;
-  height: auto;
-  margin: 10px;
-  
-}
 
 </style>
