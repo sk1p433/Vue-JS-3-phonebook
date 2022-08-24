@@ -1,23 +1,24 @@
 <template>
-  <div class="ContactAdd">
+<div class="d-flex justify-content-center"> 
+ <div class="mb-1" id="cardform">
     <form @submit.prevent="onSubmit">
-      
       <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
-      <p>Имя <input v-model="state.name" placeholder="введите имя" /></p>
-      <p>Фамилия <input v-model="state.surname" placeholder="введите фамилию" /></p>
-      <p>Номер <input v-model="state.phone.main" placeholder="введите мобильный номер" /> </p>
-      <p>Рабочий номер <input v-model="state.phone.work" placeholder="введите рабочий номер" /> </p>
-      <p>Дополнительный номер <input v-model="state.phone.additional" placeholder="введите дополнительный номер" /> </p>
-      <p>Личный email <input v-model="state.email.personal" placeholder="введите email" /> </p>
-      <p>Рабочий email <input v-model="state.email.working" placeholder="введите рабочий email" /> </p>
-      <p>Дополнительный email <input v-model="state.email.another" placeholder="дополнительный email" /> </p>
-      <p>Telegram <input v-model="state.social.telegram" placeholder="telegram" /> </p>
-      <p>Whatsapp <input v-model="state.social.whatsapp" placeholder="whatsapp" /> </p>
-      <p>VK <input v-model="state.social.vk" placeholder="vk" /> </p>
-      <p>Instagram <input v-model="state.social.instagram" placeholder="instagram" /> </p>
-      <p>Заметка <input v-model="state.social.note" placeholder="заметка" /> </p>
-      <p>День рождения <input v-model="state.social.birthday" type="date" placeholder="день рождения" /> </p>
+      Имя<input v-model="state.name" class="form-control" placeholder="введите имя" />
+      <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
+      <p>Номер <input v-model="state.phone.main" class="form-control" placeholder="введите мобильный номер" /> </p>
+      <p>Рабочий номер <input v-model="state.phone.work" class="form-control" placeholder="введите рабочий номер" /> </p>
+      <p>Дополнительный номер <input v-model="state.phone.additional" class="form-control" placeholder="введите дополнительный номер" /> </p>
+      <p>Личный email <input v-model="state.email.personal" class="form-control" placeholder="введите email" /> </p>
+      <p>Рабочий email <input v-model="state.email.working" class="form-control" placeholder="введите рабочий email" /> </p>
+      <p>Дополнительный email <input v-model="state.email.another" class="form-control" placeholder="дополнительный email" /> </p>
+      <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="telegram" /> </p>
+      <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
+      <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
+      <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="instagram" /> </p>
+      <p>Заметка <input v-model="state.social.note" class="form-control" placeholder="заметка" /> </p>
+      <p>День рождения <input v-model="state.social.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
+      class="btn btn-primary"
       @click="addContact(state.name, state.surname, state.phone.main, state.phone.work,
       state.phone.additional, state.email.personal, state.email.working, state.email.another,
       state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.social.note, state.social.birthday, state.photo)">
@@ -26,6 +27,7 @@
     </form>
      
   </div>
+</div>  
 </template>
 
 <script lang="ts">
@@ -113,3 +115,14 @@ export default defineComponent({
 
 
 </script>
+
+<style scoped>
+
+#cardform {
+  width: 20%;
+  height: auto;
+  margin: 10px;
+  
+}
+
+</style>

@@ -91,3 +91,10 @@ export default defineComponent({
 </ul>
 --
 //<img v-bind:src="'data:{{ item.photo }}'" />
+--
+.responsive {
+  width: 40%;
+  border-radius: 50%;
+  margin: 10px;
+  border: 1px solid rgb(0, 0, 0)
+}
