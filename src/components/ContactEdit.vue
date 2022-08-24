@@ -4,26 +4,25 @@
   <div class="card" :style="{ padding: '10px' }">
     <form @submit.prevent>
       <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
-      Имя<input v-model="getContactData().name" class="form-control" placeholder="введите имя" />
-      <p>Фамилия <input v-model="getContactData().surname" class="form-control" placeholder="введите фамилию" /></p>
-      <p>Номер <input v-model="getContactData().main" class="form-control" placeholder="введите мобильный номер" /> </p>
-      <p>Рабочий номер <input v-model="getContactData().work" class="form-control" placeholder="введите рабочий номер" /> </p>
-      <p>Дополнительный номер <input v-model="getContactData().additional" class="form-control" placeholder="введите дополнительный номер" /> </p>
-      <p>Личный email <input v-model="getContactData().personal" class="form-control" placeholder="введите email" /> </p>
-      <p>Рабочий email <input v-model="getContactData().working" class="form-control" placeholder="введите рабочий email" /> </p>
-      <p>Дополнительный email <input v-model="getContactData().another" class="form-control" placeholder="дополнительный email" /> </p>
-      <p>Telegram <input v-model="getContactData().telegram" class="form-control" placeholder="telegram" /> </p>
-      <p>Whatsapp <input v-model="getContactData().whatsapp" class="form-control" placeholder="whatsapp" /> </p>
-      <p>VK <input v-model="getContactData().vk" class="form-control" placeholder="vk" /> </p>
-      <p>Instagram <input v-model="getContactData().instagram" class="form-control" placeholder="instagram" /> </p>
-      <p>Заметка <input v-model="getContactData().note" class="form-control" placeholder="заметка" /> </p>
-      <p>День рождения <input v-model="getContactData().birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
+      <p>Имя<input v-model="state.name" class="form-control" placeholder="введите имя" /></p>
+      <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
+      <p>Номер <input v-model="state.phone.main" class="form-control" placeholder="введите мобильный номер" /> </p>
+      <p>Рабочий номер <input v-model="state.phone.work" class="form-control" placeholder="введите рабочий номер" /> </p>
+      <p>Дополнительный номер <input v-model="state.phone.additional" class="form-control" placeholder="введите дополнительный номер" /> </p>
+      <p>Личный email <input v-model="state.email.personal" class="form-control" placeholder="введите email" /> </p>
+      <p>Рабочий email <input v-model="state.email.working" class="form-control" placeholder="введите рабочий email" /> </p>
+      <p>Дополнительный email <input v-model="state.email.another" class="form-control" placeholder="дополнительный email" /> </p>
+      <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="telegram" /> </p>
+      <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
+      <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
+      <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="instagram" /> </p>
+      <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
+      <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
       class="btn btn-primary"
-      @click="editContact(getContactData().name, getContactData().surname, getContactData().main, getContactData().work,
-      getContactData().additional, getContactData().personal, getContactData().working, getContactData().another,
-      getContactData().telegram, getContactData().whatsapp, getContactData().vk, getContactData().instagram, 
-      getContactData().note, getContactData().birthday)"
+      @click="editContact(state.name, state.surname, state.phone.main, state.phone.work,
+      state.phone.additional, state.email.personal, state.email.working, state.email.another,
+      state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.note, state.birthday, state.photo)"
       >
       сохранить
       </button>
@@ -36,7 +35,7 @@
 
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import {useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
@@ -55,10 +54,76 @@ export default defineComponent({
           }
         }
       return []
-      } 
+    } 
+
+    
+    const editContact = (name:string, surname:string, main:number, work:number, 
+                        additional:number, personal:string, working:string, another:string,
+                        telegram:string, whatsapp:string, vk:string, instagram:string, note:string, birthday:any, photo:any) => {
+        let contacts = []
+        if (typeof window !== "undefined") {
+            if (localStorage.getItem('contacts')) {
+            let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
+            let index = contactsArray.map((object:any) => object.id).indexOf(id)
+            contactsArray[index].name = name
+            contactsArray[index].surname = surname
+            contactsArray[index].main = main
+            contactsArray[index].work = work
+            contactsArray[index].additional = additional
+            contactsArray[index].personal = personal
+            contactsArray[index].working = working
+            contactsArray[index].another = another
+            contactsArray[index].telegram = telegram
+            contactsArray[index].whatsapp = whatsapp
+            contactsArray[index].instagram = instagram
+            contactsArray[index].note = note
+            contactsArray[index].birthday = birthday
+            contactsArray[index].photo = photo
+            localStorage.setItem('contacts', JSON.stringify(contactsArray))
+            }
+          router.push({path: '/'})  
+          }
+    }
+
+    let state = reactive({
+          photo: getContactData().photo,
+          name: getContactData().name,
+          surname: getContactData().surname,
+          phone: {
+          main: getContactData().main,
+          work: getContactData().work,
+          additional: getContactData().additional,
+          },
+        email: {
+          personal: getContactData().personal,
+          working: getContactData().working,
+          another: getContactData().another,
+        },
+        social: {
+          telegram: getContactData().telegram,
+          whatsapp: getContactData().whatsapp,
+          vk: getContactData().vk,
+          instagram: getContactData().instagram,
+        },
+          birthday: getContactData().birthday,
+          note: getContactData().note,
+    })
+
+    const uploadImage = (e: any) => {
+      if (e.target.files[0].size > 1000000) return
+      let reader = new FileReader()
+      reader.onload = () => {
+        state.photo = reader.result as string
+      }
+      reader.readAsDataURL(e.target.files[0])
+    }
+    
 
     return {
       getContactData,
+      state,
+      editContact,
+      uploadImage,
     }  
 
   }
