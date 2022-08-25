@@ -27,7 +27,7 @@
        style="width: 18rem;"
       @click="$router.push(`contact/${item.id}`)">
     
-    <p v-if="item.photo==0"><div><img src="https://ipk-tula.ru/struct/img/def.jpg" class="noimg" /></div></p>
+    <p v-if="item.photo==0"><div><img src="https://ipk-tula.ru/struct/img/def.jpg" class="card-img-top" /></div></p>
     <p v-else>
     <div id="photo">
     <img :src="item.photo" class="card-img-top"  />

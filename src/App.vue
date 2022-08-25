@@ -25,19 +25,10 @@
 }
 
 .card-img-top {
-    width: 100%;
     object-fit: cover;
     height: 300px;
-    padding: 5px;
+    padding: 10px;
 }
-
-.noimg {
-  height: 300px;
-  width: 100%;
-  padding: 5px;
-}
-
-
 
 nav {
   padding: 30px;

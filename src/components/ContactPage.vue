@@ -18,7 +18,7 @@
 <div class="d-flex justify-content-center">
   
   <div class="card" style="width: 18rem;">
-    <p v-if="getContact().photo==0"><div><img src="https://ipk-tula.ru/struct/img/def.jpg" class="noimg" /></div></p>
+    <p v-if="getContact().photo==0"><div><img src="https://ipk-tula.ru/struct/img/def.jpg" class="card-img-top" /></div></p>
     <p v-else>
       <div id="photo">
       <img :src="getContact().photo" alt="фото ещё не загружено" class="card-img-top" />
