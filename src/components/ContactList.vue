@@ -26,11 +26,13 @@
   <div class="card"
        style="width: 18rem;"
       @click="$router.push(`contact/${item.id}`)">
-    <p v-if="item.photo==0"><p>Фото ещё не загружено</p></p>
+    
+    <p v-if="item.photo==0"><div><img src="https://ipk-tula.ru/struct/img/def.jpg" class="noimg" /></div></p>
     <p v-else>
     <div id="photo">
-    <img :src="item.photo" class="card-img-top" />
+    <img :src="item.photo" class="card-img-top"  />
     </div></p>
+          
     <div class="userinfo">
     <h4> {{ item.name }} {{ item.surname }} </h4>
     <hr/>
@@ -92,13 +94,8 @@ a {
   margin-bottom: 10px;
 }
 
-.card-img-top {
-    width: 100%;
-    object-fit: cover;
-    height: 300px;
-    padding: 5px;
-}
 .userinfo {
   margin: 5px;
 }
+
 </style>

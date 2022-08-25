@@ -162,3 +162,9 @@ deleteAllContacts: function() {
     object-fit: cover;
     padding: 5px;
 }
+--
+.layout {
+  display: inline-grid;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
