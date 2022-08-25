@@ -9,7 +9,7 @@
   Редактировать контакт
   </button></p>
   <button 
-  @click="deleteContact" 
+  @click="openModal" 
   class="btn btn-outline-dark" 
   :style="{ margin: '5px', width: '18rem' }">
   Удалить контакт
@@ -46,11 +46,31 @@
 </div>
 </div>
 
+<div class="dialog" v-if="showModal === true">
+
+    <div class="content">
+        <p :style="{ margin: '15px' }">При удалении контакта все данные о нём будут утеряны. Вы согласны?</p>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="hideModal"
+          >Нет
+        </button>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="deleteContact"
+          >Да
+        </button>
+     </div>
+    
+  </div>
+
 
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import {useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
@@ -59,6 +79,7 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const id = route.params.id
+    let showModal = ref(false)
         
      const getContact = () => {
 		  if (typeof window !=="undefined") {
@@ -83,9 +104,20 @@ export default defineComponent({
         router.push({path: '/'})
       }
 
+    const hideModal = () => {
+            showModal.value = false
+        }    
+
+    const openModal = () => {
+            showModal.value = true
+        }      
+
     return {
       getContact,
       deleteContact,
+      hideModal,
+      openModal,
+      showModal,
     }
 } 
 });

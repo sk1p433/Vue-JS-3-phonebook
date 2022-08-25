@@ -49,20 +49,20 @@
         :rules="emailRules.rules"
         placeholder="дополнительный email" /> 
       </p>
-      <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="telegram" /> </p>
-      <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
-      <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
-      <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="instagram" /> </p>
+      <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="введите ссылку на telegram" /> </p>
+      <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="укажите номер в whatsapp" /> </p>
+      <p>VK <input v-model="state.social.vk" class="form-control" placeholder="введите ссылку на страницу vk" /> </p>
+      <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="введите ссылку на instagram" /> </p>
       <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
       <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
-        @click="$router.push('/')"
-        class="btn btn-outline-danger" 
+        @click="openModal2"
+        class="btn btn-outline-dark" 
         :style="{ marginRight: '15px' }">
         Отменить
       </button>
       <button 
-      class="btn btn-outline-success"
+      class="btn btn-outline-dark"
       @click="addContact(state.name, state.surname, state.phone.main, state.phone.work,
       state.phone.additional, state.email.personal, state.email.working, state.email.another,
       state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.note, state.birthday, state.photo)">
@@ -71,12 +71,46 @@
     </form>
      
   </div>
-</div>  
+</div> 
+
+<div class="dialog" v-if="showModal === true">
+  <div class="content">
+        <p :style="{ margin: '15px' }">Необходимо указать имя</p>
+        <button 
+          :style="{ margin: '15px',  }" 
+          class="btn btn-outline-dark"
+          @click="hideModal"
+          >OK
+        </button>
+    </div>
+</div>
+
+<div class="dialog" v-if="showModal2 === true">
+
+    <div class="content">
+        <p :style="{ margin: '15px' }">Вы покидаете меню создания контакта, если вы ввели данные, то они будут утеряны. Вы согласны?</p>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="hideModal2"
+          >Нет
+        </button>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="$router.push('/')"
+          >Да
+        </button>
+     </div>
+    
+  </div>
+
+
 </template>
 
 <script lang="ts">
 
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import { useRouter } from "vue-router";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -85,6 +119,8 @@ export default defineComponent({
     setup() {
 
         const router = useRouter()
+        let showModal = ref(false)
+        let showModal2 = ref(false)
 
         const addContact = (name:string, surname:string, main:number, work:number, 
         additional:number, personal:string, working:string, another:string,
@@ -94,7 +130,7 @@ export default defineComponent({
             if (localStorage.getItem('contacts')) {
             contacts = JSON.parse(localStorage.getItem('contacts')|| '{}')
             }
-            if (name.length==0) { alert('Вы не можете создать контакт без имени')}
+            if (name.length==0) { showModal.value = true}
             else {
             contacts.push({
             id: uuidv4(),
@@ -171,13 +207,31 @@ export default defineComponent({
           /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(v)
           ]
     }
-                 
+
+    const hideModal = () => {
+            showModal.value = false
+        }
+
+    const openModal2 = () => {
+            showModal2.value = true
+        }  
+        
+    const hideModal2 = () => {
+            showModal2.value = false
+        }    
+    
+    
     return {
         addContact,
         state,
         uploadImage,
         checkEmail,
         emailRules,
+        showModal,
+        hideModal,
+        showModal2,
+        openModal2,
+        hideModal2,
     }
     
     }
