@@ -1,7 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">Главная страница</router-link> |
-    <router-link to="/about">О сайте</router-link>
+    <router-link to="/">Главная страница</router-link> 
   </nav>
   <router-view/>
   <footer class="footer" :style="{ backgroundColor: 'white', marginTop: '5px' }">
@@ -60,6 +59,6 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #000000;
 }
 </style>
