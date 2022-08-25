@@ -21,15 +21,15 @@
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
      
-<div v-for="item in searchContact()" :key="item.id">
+<div v-for="item in searchContact()" :key="item.id" class="layout">
  <div class="d-flex justify-content-center"> 
-  <div class="card" 
-  style="width: 18rem;"
-  @click="$router.push(`contact/${item.id}`)">
+  <div class="card"
+       style="width: 18rem;"
+      @click="$router.push(`contact/${item.id}`)">
     <p v-if="item.photo==0"><p>Фото ещё не загружено</p></p>
     <p v-else>
     <div id="photo">
-    <img :src="item.photo" alt="фото ещё не загружено" class="card-img-top" />
+    <img :src="item.photo" class="card-img-top" />
     </div></p>
     <div class="userinfo">
     <h4> {{ item.name }} {{ item.surname }} </h4>
@@ -37,15 +37,8 @@
     <p><small>Мобильный:</small> {{ item.main ? item.main : 'Не указан' }}</p>
    </div>  
   </div>
-  </div> 
-  <div class="d-flex justify-content-center"><p>***</p></div> 
-</div>
- <hr/>
- <button @click="deleteAllContacts" 
-          class="btn btn-outline-danger" 
-          :style="{ margin: '5px', width: '18rem' }">
-          удалить все контакты
- </button>
+  </div>
+  </div>
  </p>
 </div>
 </template>
@@ -74,15 +67,9 @@ export default defineComponent({
       return []
       
    },
-   deleteAllContacts: function() {
-            if (typeof window !=="undefined") {
-                localStorage.removeItem('contacts')
-                }
-              this.$forceUpdate()  
-            },
-  searchContact: function () {
+   searchContact: function () {
     //поиск по имени
-    return this.getContacts().filter((index:any) => index.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    return this.getContacts().filter((index:any) => index.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
   }
   } 
   
@@ -97,8 +84,19 @@ a {
   color: #42b983;
 }
 .card {
-  margin: 1px;
   cursor: pointer;
+}
+.layout {
+  display: inline-grid;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    padding: 5px;
 }
 .userinfo {
   margin: 5px;

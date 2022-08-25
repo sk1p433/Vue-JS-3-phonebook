@@ -139,6 +139,26 @@ export default defineComponent({
   
 }
 
+--
+deleteAllContacts: function() {
+            if (typeof window !=="undefined") {
+                localStorage.removeItem('contacts')
+                }
+              this.$forceUpdate()  
+            },
 
-
-
+--
+<p v-if="item.photo==0"><p>Фото ещё не загружено</p></p>
+    <p v-else>
+    <div id="photo">
+    <img :src="item.photo" alt="Card image cap" class="card-img-top" />
+    </div></p>
+--
+<div class="d-flex justify-content-center"><hr :style="{width: '18rem'}"/></div>
+--
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+    padding: 5px;
+}

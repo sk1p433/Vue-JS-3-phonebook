@@ -11,9 +11,10 @@
 
 <style>
 #app {
+  min-height: -webkit-fill-available;
   font-family: sans-serif;
   text-align: center;
-  background: linear-gradient(to right, #FFF9ED 20%, #DBDBDB 20%, #DBDBDB 80%, #FFF9ED 80%);
+  background: #DBDBDB;
   min-height: 100vh;
   display: grid;
   grid-template-areas:
