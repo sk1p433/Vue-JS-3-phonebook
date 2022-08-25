@@ -2,6 +2,7 @@
   <div class="home">
    <h1> Телефонная книга </h1>
     <ContactList />
+        
   </div>
 </template>
 

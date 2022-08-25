@@ -2,7 +2,6 @@
 <div class="ContactList">
 
 <p><button @click="$router.push('addcontact')" class="btn btn-outline-success" :style="{ margin: '5px', width: '15%' }">добавить контакт</button></p>
-<button @click="deleteAllContacts" class="btn btn-outline-danger" :style="{ margin: '5px', width: '15%' }">удалить все контакты</button>
 <hr/>
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
@@ -26,10 +25,10 @@
   </div> 
   <div class="d-flex justify-content-center"><p>***</p></div> 
 </div>
-
+ <hr/>
+ <button @click="deleteAllContacts" class="btn btn-outline-danger" :style="{ margin: '5px', width: '15%' }">удалить все контакты</button>
  </p>
-        
- </div>
+</div>
 </template>
 
 <script lang="ts">

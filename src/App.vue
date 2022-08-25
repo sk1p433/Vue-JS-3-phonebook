@@ -4,6 +4,9 @@
     <router-link to="/about">О сайте</router-link>
   </nav>
   <router-view/>
+  <footer class="footer" :style="{ backgroundColor: 'white' }">
+         PhoneBook © 2022 
+  </footer>
 </template>
 
 <style>
@@ -11,7 +14,16 @@
   font-family: sans-serif;
   text-align: center;
   background: linear-gradient(to right, #FFF9ED 20%, #DBDBDB 20%, #DBDBDB 80%, #FFF9ED 80%);
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+      'main'
+      'footer';
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr;
 }
+
+
 
 nav {
   padding: 30px;
