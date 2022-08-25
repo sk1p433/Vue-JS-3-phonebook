@@ -3,7 +3,7 @@
 <div>
   <p><button 
   class="btn btn-outline-success" 
-  :style="{ width: '15%' }"
+  :style="{ width: '18rem' }"
   @click="$router.push(`editcontact/${getContact().id}`)"
   >
   Редактировать контакт
@@ -11,7 +11,7 @@
   <button 
   @click="deleteContact" 
   class="btn btn-outline-danger" 
-  :style="{ margin: '5px', width: '15%' }">
+  :style="{ margin: '5px', width: '18rem' }">
   Удалить контакт
   </button>
 <hr/>  

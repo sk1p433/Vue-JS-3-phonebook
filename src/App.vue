@@ -4,7 +4,7 @@
     <router-link to="/about">О сайте</router-link>
   </nav>
   <router-view/>
-  <footer class="footer" :style="{ backgroundColor: 'white' }">
+  <footer class="footer" :style="{ backgroundColor: 'white', marginTop: '5px' }">
          PhoneBook © 2022 
   </footer>
 </template>

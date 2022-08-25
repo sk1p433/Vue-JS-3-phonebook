@@ -1,12 +1,27 @@
 <template>
 <div class="ContactList">
-
-<p><button @click="$router.push('addcontact')" class="btn btn-outline-success" :style="{ margin: '5px', width: '15%' }">добавить контакт</button></p>
+  
+<p><button @click="$router.push('addcontact')" 
+          class="btn btn-outline-success" 
+          :style="{ margin: '5px', width: '18rem' }">
+          добавить контакт
+   </button></p>
 <hr/>
+ <div class="d-flex justify-content-center">
+    <form class="form-inline my-2 my-lg-0">
+      <input 
+        v-model="searchQuery"
+        :style="{ marginBottom: '15px', width: '18rem' }"
+        class="form-control mr-sm-2" 
+        type="search" 
+        placeholder="Поиск..." 
+        aria-label="Search">
+    </form>
+ </div>  
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
      
-<div v-for="item in getContacts()" :key="item.id">
+<div v-for="item in searchContact()" :key="item.id">
  <div class="d-flex justify-content-center"> 
   <div class="card" 
   style="width: 18rem;"
@@ -26,7 +41,11 @@
   <div class="d-flex justify-content-center"><p>***</p></div> 
 </div>
  <hr/>
- <button @click="deleteAllContacts" class="btn btn-outline-danger" :style="{ margin: '5px', width: '15%' }">удалить все контакты</button>
+ <button @click="deleteAllContacts" 
+          class="btn btn-outline-danger" 
+          :style="{ margin: '5px', width: '18rem' }">
+          удалить все контакты
+ </button>
  </p>
 </div>
 </template>
@@ -37,6 +56,11 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   
   name:'ContactList',
+  data () {
+    return {
+      searchQuery:'',
+    }
+  },
   methods: {
 	  getContacts: function() {
 		  if (typeof window !=="undefined") {
@@ -55,7 +79,11 @@ export default defineComponent({
                 localStorage.removeItem('contacts')
                 }
               this.$forceUpdate()  
-            }
+            },
+  searchContact: function () {
+    //поиск по имени
+    return this.getContacts().filter((index:any) => index.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+  }
   } 
   
   
