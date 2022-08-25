@@ -1,8 +1,8 @@
 <template>
 <div class="ContactList">
 
-<p><button @click="$router.push('addcontact')" class="btn btn-primary" :style="{ margin: '5px', width: '15%' }">добавить контакт</button></p>
-<button @click="deleteAllContacts" class="btn btn-primary" :style="{ margin: '5px', width: '15%' }">удалить все контакты</button>
+<p><button @click="$router.push('addcontact')" class="btn btn-outline-success" :style="{ margin: '5px', width: '15%' }">добавить контакт</button></p>
+<button @click="deleteAllContacts" class="btn btn-outline-danger" :style="{ margin: '5px', width: '15%' }">удалить все контакты</button>
 <hr/>
  <p v-if="getContacts().length==0">Контакты ещё не добавлены</p>
  <p v-else>
@@ -44,7 +44,7 @@ export default defineComponent({
         if (localStorage.getItem('contacts')) {
           let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
           //сортировка контактов от А до Я по именам
-          let sortedContacts = contactsArray.sort((a:any, b:any) => (a.name < b.name ? -1 : 1))
+          let sortedContacts = contactsArray.sort((a:any, b:any) => (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1))
           return sortedContacts
           }
         }

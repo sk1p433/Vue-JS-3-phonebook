@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-   <h1> Контакты</h1>
-    <ContactList msg="Welcome to Your Vue.js + TypeScript App"/>
+   <h1> Телефонная книга </h1>
+    <ContactList />
   </div>
 </template>
 
@@ -16,3 +16,4 @@ export default defineComponent({
   },
 });
 </script>
+

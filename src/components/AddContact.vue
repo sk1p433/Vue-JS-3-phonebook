@@ -160,7 +160,7 @@ export default defineComponent({
     }
     
     const emailRules = {rules: 
-          [(v: any) =>          !v ||
+          [(v: any) => !v ||
           !v.length ||
           /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(v)
           ]

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">Телефонная книга</router-link> |
+    <router-link to="/">Главная страница</router-link> |
     <router-link to="/about">О сайте</router-link>
   </nav>
   <router-view/>
@@ -8,11 +8,9 @@
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: sans-serif;
   text-align: center;
-  color: #2c3e50;
+  background: linear-gradient(to right, #FFF9ED 20%, #DBDBDB 20%, #DBDBDB 80%, #FFF9ED 80%);
 }
 
 nav {
