@@ -52,13 +52,13 @@
       <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
       <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
-        @click="$router.push('/')"
-        class="btn btn-outline-danger" 
+        @click="openModal2"
+        class="btn btn-outline-dark" 
         :style="{ marginRight: '15px' }">
         Отменить
       </button>
       <button 
-        class="btn btn-outline-success"
+        class="btn btn-outline-dark"
         :style="{ marginLeft: '15px' }"
         @click="editContact(state.name, state.surname, state.phone.main, state.phone.work,
         state.phone.additional, state.email.personal, state.email.working, state.email.another,
@@ -71,13 +71,52 @@
      
   </div>
 </div>  
+  <div class="dialog" v-if="showModal === true">
+
+    <div class="content">
+        <p :style="{ margin: '15px' }">Вы удалили имя. В этом случае контакт будет удалён. Вы согласны?</p>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="hideModal"
+          >Нет
+        </button>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="deleteContact"
+          >Да
+        </button>
+     </div>
+    
+  </div>
+  <div class="dialog" v-if="showModal2 === true">
+
+    <div class="content">
+        <p :style="{ margin: '15px' }">Вы покидаете меню редактирования контакта. В этом случае все изменения будут отменены. Вы согласны?</p>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="hideModal2"
+          >Нет
+        </button>
+        <button 
+          :style="{ margin: '15px', width:'15%' }" 
+          class="btn btn-outline-dark"
+          @click="$router.push('/')"
+          >Да
+        </button>
+     </div>
+    
+  </div>
 
 </template>
 
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import {useRoute, useRouter } from "vue-router";
+
 
 export default defineComponent({
 
@@ -85,6 +124,8 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const id = route.params.id
+    let showModal = ref(false)
+    let showModal2 = ref(false)
         
     const getContactData = () => {
 		  if (typeof window !=="undefined") {
@@ -105,6 +146,8 @@ export default defineComponent({
             if (localStorage.getItem('contacts')) {
             let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
             let index = contactsArray.map((object:any) => object.id).indexOf(id)
+            if (name.length==0) { showModal.value = true } 
+            else {
             contactsArray[index].name = name
             contactsArray[index].surname = surname
             contactsArray[index].main = main
@@ -120,10 +163,25 @@ export default defineComponent({
             contactsArray[index].birthday = birthday
             contactsArray[index].photo = photo
             localStorage.setItem('contacts', JSON.stringify(contactsArray))
+            router.push({path: '/'})
             }
-          router.push({path: '/'})  
+           }
+            
           }
+          
     }
+
+    const deleteContact = () => {
+        if (typeof window !=="undefined") {
+            if (localStorage.getItem('contacts')) {
+          let contactsArray = JSON.parse(localStorage.getItem('contacts')|| '{}')
+          let index = contactsArray.map((object:any) => object.id).indexOf(id)
+          contactsArray.splice(index, 1)
+          localStorage.setItem('contacts', JSON.stringify(contactsArray))
+          }
+        }
+        router.push({path: '/'})
+      }
 
     let state = reactive({
           photo: getContactData().photo,
@@ -175,7 +233,20 @@ export default defineComponent({
       /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(v)
       ]
     }
-    
+
+    const hideModal = () => {
+            showModal.value = false
+        }
+
+    const hideModal2 = () => {
+            showModal2.value = false
+        }    
+
+    const openModal2 = () => {
+            showModal2.value = true
+        }    
+
+      //
 
     return {
       getContactData,
@@ -185,6 +256,12 @@ export default defineComponent({
       checkSpelling,
       checkEmail,
       emailRules,
+      showModal,
+      showModal2,
+      hideModal,
+      hideModal2,
+      deleteContact,
+      openModal2,
     }  
 
   }
@@ -192,3 +269,4 @@ export default defineComponent({
 });
 
 </script>
+
