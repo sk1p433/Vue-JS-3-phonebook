@@ -43,6 +43,8 @@
   </div>
  </p>
 </div>
+
+
 </template>
 
 <script lang="ts">
@@ -104,5 +106,6 @@ a {
 .userinfo {
   margin: 5px;
 }
+
 
 </style>

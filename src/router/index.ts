@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AddContact from '../components/AddContact.vue'
 import ContactPage from '../components/ContactPage.vue'
 import ContactEdit from '../components/ContactEdit.vue'
+import PageNotFound from '../components/PageNotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,15 @@ const routes: Array<RouteRecordRaw> = [
     name: 'editcontact',
     component: ContactEdit,
   },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: PageNotFound,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  
 ]
 
 const router = createRouter({
