@@ -56,11 +56,17 @@
       <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
       <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
       <button 
+        @click="$router.push('/')"
+        class="btn btn-outline-danger" 
+        :style="{ marginRight: '15px' }">
+        Отменить
+      </button>
+      <button 
       class="btn btn-outline-success"
       @click="addContact(state.name, state.surname, state.phone.main, state.phone.work,
       state.phone.additional, state.email.personal, state.email.working, state.email.another,
       state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.note, state.birthday, state.photo)">
-      сохранить
+      Cохранить
       </button>
     </form>
      

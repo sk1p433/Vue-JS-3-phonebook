@@ -24,7 +24,7 @@
       <img :src="getContact().photo" alt="фото ещё не загружено" class="card-img-top" />
       </div></p>
     <div class="userinfo">
-      <h4>{{ getContact().name }} {{ getContact().surname }}</h4>
+      <h4 :style="{ margin: '10px' }">{{ getContact().name }} {{ getContact().surname }}</h4>
       <hr/>
       <p><small>Мобильный:</small> {{ getContact().main ? getContact().main : 'Не указан' }} </p>
       <p><small>Рабочий:</small> {{ getContact().work ? getContact().work : 'Не указан' }}</p>
