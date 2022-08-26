@@ -1,8 +1,12 @@
 <template>
 <h4>Добавить контакт</h4>
 <div class="d-flex justify-content-center"> 
-  <div class="card" :style="{ padding: '10px' }">
+  <div class="card"  style="width: 18rem; padding: 10px">
     <form @submit.prevent>
+      <div v-if="state.photo.length==0"><div><img src="https://ipk-tula.ru/struct/img/def.jpg" class="preview" /></div></div>
+      <div v-else>
+       <img :src="state.photo" class="preview" />
+      </div>
       <p>Загрузить фото 
         <input type="file" 
         accept="image/*" 
@@ -286,8 +290,7 @@ export default defineComponent({
 
 p {
   text-align: left;
-  margin-bottom: 25px;
 }
 
-
 </style>
+

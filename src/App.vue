@@ -31,6 +31,14 @@
     border-radius: 50%;
 }
 
+.preview {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    padding: 30px;
+    border-radius: 50%;
+}
+
 .dialog {
     top: 0;
     bottom: 0;
