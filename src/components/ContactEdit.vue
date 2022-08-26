@@ -3,9 +3,21 @@
 <div class="d-flex justify-content-center"> 
   <div class="card" :style="{ padding: '10px' }">
     <form @submit.prevent>
-      <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
-      <p>Имя<input v-model="state.name" class="form-control" placeholder="введите имя" /></p>
-      <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
+      <p>Загрузить фото 
+        <input type="file" 
+        accept="image/*" 
+        @change="uploadImage">
+      </p>
+      <p>Имя
+        <input v-model="state.name" 
+        class="form-control" 
+        placeholder="введите имя" />
+      </p>
+      <p>Фамилия 
+        <input v-model="state.surname" 
+        class="form-control" 
+        placeholder="введите фамилию" />
+      </p>
       <p>Номер 
         <input v-model="state.phone.main" 
         class="form-control" 
@@ -45,12 +57,38 @@
         :rules="emailRules.rules" 
         placeholder="дополнительный email" />
       </p>
-      <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="telegram" /> </p>
-      <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="whatsapp" /> </p>
-      <p>VK <input v-model="state.social.vk" class="form-control" placeholder="vk" /> </p>
-      <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="instagram" /> </p>
-      <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
-      <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
+      <p>Telegram 
+        <input 
+        v-model="state.social.telegram" 
+        class="form-control" 
+        placeholder="введите ссылку на telegram" />
+      </p>
+      <p>Whatsapp 
+        <input v-model="state.social.whatsapp" 
+        class="form-control" 
+        placeholder="укажите номер в whatsapp" /> 
+      </p>
+      <p>VK 
+        <input v-model="state.social.vk" 
+        class="form-control" 
+        placeholder="введите ссылку на страницу vk" /> 
+      </p>
+      <p>Instagram 
+        <input v-model="state.social.instagram" 
+        class="form-control" 
+        placeholder="введите ссылку на instagram" /> 
+      </p>
+      <p>Заметка 
+        <input v-model="state.note" 
+        class="form-control" 
+        placeholder="заметка" /> 
+      </p>
+      <p>День рождения 
+        <input 
+        v-model="state.birthday" 
+        class="form-control" 
+        type="date" 
+        placeholder="день рождения" /> </p>
       <button 
         @click="openModal2"
         class="btn btn-outline-dark" 
@@ -74,7 +112,9 @@
   <div class="dialog" v-if="showModal === true">
 
     <div class="content">
-        <p :style="{ margin: '15px' }">Вы удалили имя. В этом случае контакт будет удалён. Вы согласны?</p>
+        <p :style="{ margin: '15px' }">
+        Вы удалили имя. В этом случае контакт будет удалён. Вы согласны?
+        </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
           class="btn btn-outline-dark"
@@ -93,7 +133,9 @@
   <div class="dialog" v-if="showModal2 === true">
 
     <div class="content">
-        <p :style="{ margin: '15px' }">Вы покидаете меню редактирования контакта. В этом случае все изменения будут отменены. Вы согласны?</p>
+        <p :style="{ margin: '15px' }">
+        Вы покидаете меню редактирования контакта. В этом случае все изменения будут отменены. Вы согласны?
+        </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
           class="btn btn-outline-dark"
@@ -246,8 +288,7 @@ export default defineComponent({
             showModal2.value = true
         }    
 
-      //
-
+      
     return {
       getContactData,
       state,
@@ -269,4 +310,14 @@ export default defineComponent({
 });
 
 </script>
+
+<style scoped>
+
+p {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+
+</style>
 

@@ -26,20 +26,67 @@
     <div class="userinfo">
       <h4 :style="{ margin: '10px' }">{{ getContact().name }} {{ getContact().surname }}</h4>
       <hr/>
-      <p><small>Мобильный:</small> {{ getContact().main ? getContact().main : 'Не указан' }} </p>
-      <p><small>Рабочий:</small> {{ getContact().work ? getContact().work : 'Не указан' }}</p>
-      <p><small>Дополнительный:</small> {{ getContact().additional ? getContact().additional : 'Не указан' }}</p>
+      <p><small>
+        Мобильный:
+        </small>
+         {{ getContact().main ? getContact().main : 'Не указан' }}
+      </p>
+      <p><small>
+        Рабочий:
+        </small>
+         {{ getContact().work ? getContact().work : 'Не указан' }}
+      </p>
+      <p><small>
+        Дополнительный:
+        </small>
+         {{ getContact().additional ? getContact().additional : 'Не указан' }}
+      </p>
       <hr/> 
-      <p><small>Email:</small> {{ getContact().personal ? getContact().personal : 'Не указан' }} </p>
-      <p><small>Рабочий email:</small> {{ getContact().working ? getContact().working : 'Не указан' }} </p>
-      <p><small>Дополнительный:</small> {{ getContact().another ? getContact().another : 'Не указан' }} </p>
-      <hr/><small>Социальные сети:</small>
-      <p><a v-bind:href="getContact().vk" target="_blank"> {{ getContact().vk ? 'VK' : ''  }} </a> </p>
-      <p><a v-bind:href="getContact().instagram" target="_blank"> {{ getContact().instagram ? 'Instagram' : ''  }}  </a> </p>
-      <p><a v-bind:href="getContact().whatsapp" target="_blank"> {{ getContact().whatsapp ? 'Whatsapp' : ''  }}  </a> </p>
-      <p><a v-bind:href="getContact().telegram" target="_blank"> {{ getContact().telegram ? 'Telegram' : ''  }}  </a> </p>
-      <hr/> День рождения: {{ getContact().birthday ? getContact().birthday : 'Не указан' }}   
-      <hr/> <p>Заметки: {{ getContact().note ? getContact().note : 'У данного контакта пока нет заметок' }} </p>
+      <p><small>
+        Email:
+        </small>
+         {{ getContact().personal ? getContact().personal : 'Не указан' }}
+      </p>
+      <p><small>
+        Рабочий email:
+        </small>
+         {{ getContact().working ? getContact().working : 'Не указан' }}
+      </p>
+      <p><small>
+        Дополнительный:
+        </small>
+         {{ getContact().another ? getContact().another : 'Не указан' }}
+      </p>
+      <hr/><small>
+        Социальные сети:
+        </small>
+      <p>
+        <a v-bind:href="getContact().vk" target="_blank">
+         {{ getContact().vk ? 'VK' : ''  }}
+        </a>
+      </p>
+      <p>
+        <a v-bind:href="getContact().instagram" target="_blank">
+         {{ getContact().instagram ? 'Instagram' : ''  }}
+        </a>
+      </p>
+      <p>
+        <a v-bind:href="getContact().whatsapp" target="_blank">
+         {{ getContact().whatsapp ? 'Whatsapp' : ''  }}
+        </a>
+      </p>
+      <p>
+        <a v-bind:href="getContact().telegram" target="_blank">
+         {{ getContact().telegram ? 'Telegram' : ''  }}
+        </a>
+      </p>
+      <hr/>
+       День рождения: {{ getContact().birthday ? getContact().birthday : 'Не указан' }}   
+      <hr/>
+       <p>
+        Заметки:
+         {{ getContact().note ? getContact().note : 'У данного контакта пока нет заметок' }}
+       </p>
     </div>
    
   </div>
@@ -49,7 +96,9 @@
 <div class="dialog" v-if="showModal === true">
 
     <div class="content">
-        <p :style="{ margin: '15px' }">При удалении контакта все данные о нём будут утеряны. Вы согласны?</p>
+        <p :style="{ margin: '15px' }">
+        При удалении контакта все данные о нём будут утеряны. Вы согласны?
+        </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
           class="btn btn-outline-dark"
@@ -129,5 +178,7 @@ export default defineComponent({
 .card {
   margin: 10px;
 }
+
+
 
 </style>

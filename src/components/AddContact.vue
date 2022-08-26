@@ -3,9 +3,21 @@
 <div class="d-flex justify-content-center"> 
   <div class="card" :style="{ padding: '10px' }">
     <form @submit.prevent>
-      <p>Загрузить фото <input type="file" accept="image/*" @change="uploadImage"></p>
-      Имя<input v-model="state.name" class="form-control" placeholder="введите имя" />
-      <p>Фамилия <input v-model="state.surname" class="form-control" placeholder="введите фамилию" /></p>
+      <p>Загрузить фото 
+        <input type="file" 
+        accept="image/*" 
+        @change="uploadImage">
+      </p>
+      <p>Имя
+        <input v-model="state.name" 
+        class="form-control" 
+        placeholder="введите имя" />
+      </p>
+      <p>Фамилия 
+        <input v-model="state.surname" 
+        class="form-control" 
+        placeholder="введите фамилию" />
+      </p>
       <p>Сотовый телефон 
         <input 
         v-model="state.phone.main" 
@@ -49,12 +61,37 @@
         :rules="emailRules.rules"
         placeholder="дополнительный email" /> 
       </p>
-      <p>Telegram <input v-model="state.social.telegram" class="form-control" placeholder="введите ссылку на telegram" /> </p>
-      <p>Whatsapp <input v-model="state.social.whatsapp" class="form-control" placeholder="укажите номер в whatsapp" /> </p>
-      <p>VK <input v-model="state.social.vk" class="form-control" placeholder="введите ссылку на страницу vk" /> </p>
-      <p>Instagram <input v-model="state.social.instagram" class="form-control" placeholder="введите ссылку на instagram" /> </p>
-      <p>Заметка <input v-model="state.note" class="form-control" placeholder="заметка" /> </p>
-      <p>День рождения <input v-model="state.birthday" class="form-control" type="date" placeholder="день рождения" /> </p>
+      <p>Telegram 
+        <input v-model="state.social.telegram" 
+        class="form-control" 
+        placeholder="введите ссылку на telegram" /> 
+      </p>
+      <p>Whatsapp 
+        <input v-model="state.social.whatsapp" 
+        class="form-control" 
+        placeholder="укажите номер в whatsapp" />
+      </p>
+      <p>VK 
+        <input v-model="state.social.vk" 
+        class="form-control" 
+        placeholder="введите ссылку на страницу vk" /> 
+      </p>
+      <p>Instagram 
+        <input v-model="state.social.instagram" 
+        class="form-control" 
+        placeholder="введите ссылку на instagram" />
+      </p>
+      <p>Заметка 
+        <input v-model="state.note" 
+        class="form-control" 
+        placeholder="заметка" />
+      </p>
+      <p>День рождения 
+        <input v-model="state.birthday" 
+        class="form-control" 
+        type="date" 
+        placeholder="день рождения" />
+      </p>
       <button 
         @click="openModal2"
         class="btn btn-outline-dark" 
@@ -65,7 +102,8 @@
       class="btn btn-outline-dark"
       @click="addContact(state.name, state.surname, state.phone.main, state.phone.work,
       state.phone.additional, state.email.personal, state.email.working, state.email.another,
-      state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram, state.note, state.birthday, state.photo)">
+      state.social.telegram, state.social.whatsapp, state.social.vk, state.social.instagram,
+      state.note, state.birthday, state.photo)">
       Cохранить
       </button>
     </form>
@@ -75,7 +113,9 @@
 
 <div class="dialog" v-if="showModal === true">
   <div class="content">
-        <p :style="{ margin: '15px' }">Необходимо указать имя</p>
+        <p :style="{ margin: '15px' }">
+        Необходимо указать имя
+        </p>
         <button 
           :style="{ margin: '15px',  }" 
           class="btn btn-outline-dark"
@@ -88,7 +128,9 @@
 <div class="dialog" v-if="showModal2 === true">
 
     <div class="content">
-        <p :style="{ margin: '15px' }">Вы покидаете меню создания контакта, если вы ввели данные, то они будут утеряны. Вы согласны?</p>
+        <p :style="{ margin: '15px' }">
+        Вы покидаете меню создания контакта, если вы ввели данные, то они будут утеряны. Вы согласны?
+        </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
           class="btn btn-outline-dark"
@@ -241,5 +283,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+p {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
 
 </style>
