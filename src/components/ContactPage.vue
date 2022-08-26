@@ -2,7 +2,7 @@
 
 <div>
   <p><button 
-  class="btn btn-outline-dark" 
+  class="btn btn-success" 
   :style="{ width: '18rem' }"
   @click="$router.push(`editcontact/${getContact().id}`)"
   >
@@ -10,7 +10,7 @@
   </button></p>
   <button 
   @click="openModal" 
-  class="btn btn-outline-dark" 
+  class="btn btn-success" 
   :style="{ margin: '5px', width: '18rem' }">
   Удалить контакт
   </button>
@@ -100,13 +100,13 @@
         </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
-          class="btn btn-outline-dark"
+          class="btn btn-success"
           @click="hideModal"
           >Нет
         </button>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
-          class="btn btn-outline-dark"
+          class="btn btn-success"
           @click="deleteContact"
           >Да
         </button>

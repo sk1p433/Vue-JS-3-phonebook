@@ -2,7 +2,7 @@
 <div class="ContactList">
   
 <p><button @click="$router.push('addcontact')" 
-          class="btn btn-outline-dark" 
+          class="btn btn-success" 
           :style="{ margin: '5px', width: '18rem' }">
           добавить контакт
    </button></p>

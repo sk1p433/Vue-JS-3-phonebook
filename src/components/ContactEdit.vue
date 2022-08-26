@@ -97,12 +97,12 @@
         placeholder="день рождения" /> </p>
       <button 
         @click="openModal2"
-        class="btn btn-outline-dark" 
+        class="btn btn-success" 
         :style="{ marginRight: '15px' }">
         Отменить
       </button>
       <button 
-        class="btn btn-outline-dark"
+        class="btn btn-success"
         :style="{ marginLeft: '15px' }"
         @click="editContact(state.name, state.surname, state.phone.main, state.phone.work,
         state.phone.additional, state.email.personal, state.email.working, state.email.another,
@@ -123,13 +123,13 @@
         </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
-          class="btn btn-outline-dark"
+          class="btn btn-success"
           @click="hideModal"
           >Нет
         </button>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
-          class="btn btn-outline-dark"
+          class="btn btn-success"
           @click="deleteContact"
           >Да
         </button>
@@ -144,13 +144,13 @@
         </p>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
-          class="btn btn-outline-dark"
+          class="btn btn-success"
           @click="hideModal2"
           >Нет
         </button>
         <button 
           :style="{ margin: '15px', width:'15%' }" 
-          class="btn btn-outline-dark"
+          class="btn btn-success"
           @click="$router.push('/')"
           >Да
         </button>
