@@ -9,6 +9,7 @@
       </div>
       <p>Загрузить фото 
         <input type="file" 
+        class="form-control"
         accept="image/*" 
         @change="uploadImage">
       </p>
@@ -290,6 +291,10 @@ export default defineComponent({
 
 p {
   text-align: left;
+}
+
+.card {
+  display: inline-grid;
 }
 
 </style>

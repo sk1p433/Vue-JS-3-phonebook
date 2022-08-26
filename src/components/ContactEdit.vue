@@ -10,6 +10,7 @@
       </div>
        <p>Загрузить фото 
         <input type="file" 
+        class="form-control"
         accept="image/*" 
         @change="uploadImage">
       </p>
