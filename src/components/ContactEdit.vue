@@ -206,6 +206,7 @@ export default defineComponent({
             contactsArray[index].another = another
             contactsArray[index].telegram = telegram
             contactsArray[index].whatsapp = whatsapp
+            contactsArray[index].vk = vk
             contactsArray[index].instagram = instagram
             contactsArray[index].note = note
             contactsArray[index].birthday = birthday
