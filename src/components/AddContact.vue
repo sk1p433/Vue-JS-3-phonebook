@@ -94,7 +94,7 @@
       <p>День рождения 
         <input v-model="state.birthday" 
         class="form-control" 
-        type="date" 
+        type="date"
         placeholder="день рождения" />
       </p>
       <button 

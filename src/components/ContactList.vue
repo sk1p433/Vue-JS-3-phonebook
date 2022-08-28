@@ -72,9 +72,10 @@ export default defineComponent({
       
    },
    searchContact: function () {
-    //поиск по имени или номеру
+    //поиск по имени или номеру или фамилии
     return this.getContacts().filter((index:any) => (index.name.toLowerCase().includes(this.searchQuery.toLowerCase())) || 
-            index.main.replace('(','').replace(')','').split(' ').join('').split('-').join('').includes(this.searchQuery))
+            index.main.replace('(','').replace(')','').split(' ').join('').split('-').join('').includes(this.searchQuery) ||
+            index.surname.toLowerCase().includes(this.searchQuery.toLowerCase()))
                                                     
   }
   } 
